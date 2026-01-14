@@ -1,5 +1,5 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useRef, useEffect, useState, useLayoutEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import './App.css';
 
 // --- IMPORTAÇÃO DAS IMAGENS (Necessário para funcionar na Vercel) ---
@@ -87,11 +87,6 @@ function App() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  const handleNavClick = (offset: number) => {
-    parallax.current?.scrollTo(offset);
-    setMenuOpen(false);
-  };
 
   const handleScrollToId = (id: string) => {
     const element = document.getElementById(id);
