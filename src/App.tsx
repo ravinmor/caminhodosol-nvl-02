@@ -1,5 +1,5 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useRef, useEffect, useState, useLayoutEffect } from 'react';
+import { useRef, useEffect, useState } from 'react';
 import './App.css';
 
 
@@ -32,18 +32,17 @@ const Reveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 function App() {
   const parallax = useRef<any>(null);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [pageCount, setPageCount] = useState(() => 
+  const [pageCount] = useState(() => 
     window.innerWidth < 540 ? 13 : 
     (window.innerWidth < 768 ? 11.3 : 
     (window.innerWidth < 1240 ? 10 : 8.4))
   );
-  const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000); // 2.5 segundos de loading
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);
@@ -64,11 +63,6 @@ function App() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
-
-  const handleNavClick = (offset: number) => {
-    parallax.current?.scrollTo(offset);
-    setMenuOpen(false);
-  };
 
   return (
     <div className="app-container">
