@@ -48,7 +48,6 @@ function App() {
     (window.innerWidth < 768 ? 11.3 : 
     (window.innerWidth < 1240 ? 10 : 8.4))
   );
-  const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -88,32 +87,6 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
-  const handleScrollToId = (id: string) => {
-    const element = document.getElementById(id);
-    // IMPORTANTE: Esse valor deve ser IGUAL ao offset da sua Layer de conteúdo (Info/Cronograma)
-    const LAYER_START = 2.99; 
-
-    if (element && parallax.current) {
-      // 1. Encontra o container pai (a div parallax-content-wrapper)
-      const container = element.closest('.parallax-content-wrapper');
-
-      if (container) {
-        // 2. Calcula a distância do elemento até o topo desse container
-        // Isso nos dá a posição fixa dele dentro da seção, independente do scroll
-        const relativeTop = element.getBoundingClientRect().top - container.getBoundingClientRect().top;
-
-        // 3. Converte pixels para "unidades de página" do Parallax
-        const pageOffset = relativeTop / window.innerHeight;
-
-        // 4. Soma o início da layer + a posição relativa
-        // O -0.05 é um pequeno ajuste para dar um respiro no topo
-        parallax.current.scrollTo(LAYER_START + pageOffset - 0.05);
-        
-        setMenuOpen(false);
-      }
-    }
-  };
-
   return (
     <div className="app-container">
       <div className={`preloader-container ${!loading ? 'preloader-hidden' : ''}`}>
@@ -123,28 +96,12 @@ function App() {
           className="pulsing-icon"
         />
       </div>
-      <header className={`main-header ${menuOpen ? 'menu-active' : ''}`} style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
+      <header className="main-header" style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
         <div className="logo">
           <img src={logoImg} alt="Logo" style={{ width: '50px' }} />
         </div>
 
-        {/* Ícone do Menu (Visível apenas no mobile via CSS) */}
-        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
-          <span className="bar"></span>
-          <span className="bar"></span>
-          <span className="bar"></span>
-        </div>
-
-        {/* Navegação (Classes dinâmicas para abrir/fechar) */}
-        <nav className={`main-nav ${menuOpen ? 'nav-open' : ''}`}>
-          {/* Botões agora apontam para IDs específicos */}
-          <button onClick={() => handleScrollToId('roadmap')} className="nav-link-btn">Cronograma</button>
-          <button onClick={() => handleScrollToId('payment')} className="nav-link-btn">Inscreva-se</button>
-          <button onClick={() => handleScrollToId('guides')} className="nav-link-btn">Sobre Nós</button>
-          <button onClick={() => handleScrollToId('faq')} className="nav-link-btn">FAQ</button>
-        </nav>
-
-        {/* Botão Flutuante Fixo (Opção do Header) */}
+        {/* APENAS O BOTÃO */}
         <a 
           href="SEU_LINK_CHECKOUT" 
           target="_blank"
