@@ -1,6 +1,17 @@
 import { Parallax, ParallaxLayer } from '@react-spring/parallax';
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState, useLayoutEffect } from 'react';
 import './App.css';
+
+// --- IMPORTAÇÃO DAS IMAGENS (Necessário para funcionar na Vercel) ---
+import logoImg from './assets/images/caminho_do_sol-no_bg.png';
+import layer20_2 from './assets/images/layer-20-2.png';
+import layer21 from './assets/images/layer-21.png';
+import layer22 from './assets/images/layer-22.png';
+import layer23 from './assets/images/layer-23.png';
+import layerHook1 from './assets/images/layer-hook-1.png';
+import layerHook2 from './assets/images/layer-hook-2.png';
+import daniImg from './assets/images/dani.jpg';
+import ravinImg from './assets/images/ravin.jpg';
 
 
 const Reveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => {
@@ -32,19 +43,32 @@ const Reveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
 function App() {
   const parallax = useRef<any>(null);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  const [pageCount] = useState(() => 
+  const [pageCount, setPageCount] = useState(() => 
     window.innerWidth < 540 ? 13 : 
     (window.innerWidth < 768 ? 11.3 : 
     (window.innerWidth < 1240 ? 10 : 8.4))
   );
+  const [menuOpen, setMenuOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 2000); // 2.5 segundos de loading
 
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const handleResize = () => {
+        const width = window.innerWidth;
+        if (width < 540) setPageCount(13);
+        else if (width < 768) setPageCount(11.3);
+        else if (width < 1240) setPageCount(10);
+        else setPageCount(8.4);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
@@ -64,21 +88,68 @@ function App() {
     return () => clearInterval(interval);
   }, []);
 
+  const handleNavClick = (offset: number) => {
+    parallax.current?.scrollTo(offset);
+    setMenuOpen(false);
+  };
+
+  const handleScrollToId = (id: string) => {
+    const element = document.getElementById(id);
+    // IMPORTANTE: Esse valor deve ser IGUAL ao offset da sua Layer de conteúdo (Info/Cronograma)
+    const LAYER_START = 2.99; 
+
+    if (element && parallax.current) {
+      // 1. Encontra o container pai (a div parallax-content-wrapper)
+      const container = element.closest('.parallax-content-wrapper');
+
+      if (container) {
+        // 2. Calcula a distância do elemento até o topo desse container
+        // Isso nos dá a posição fixa dele dentro da seção, independente do scroll
+        const relativeTop = element.getBoundingClientRect().top - container.getBoundingClientRect().top;
+
+        // 3. Converte pixels para "unidades de página" do Parallax
+        const pageOffset = relativeTop / window.innerHeight;
+
+        // 4. Soma o início da layer + a posição relativa
+        // O -0.05 é um pequeno ajuste para dar um respiro no topo
+        parallax.current.scrollTo(LAYER_START + pageOffset - 0.05);
+        
+        setMenuOpen(false);
+      }
+    }
+  };
+
   return (
     <div className="app-container">
       <div className={`preloader-container ${!loading ? 'preloader-hidden' : ''}`}>
         <img 
-          src="/src/assets/images/caminho_do_sol-no_bg.png" 
+          src={logoImg} 
           alt="Carregando..." 
           className="pulsing-icon"
         />
       </div>
-      <header className="main-header" style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
+      <header className={`main-header ${menuOpen ? 'menu-active' : ''}`} style={{ position: 'fixed', zIndex: 1000, width: '100%' }}>
         <div className="logo">
-          <img src="/src/assets/images/caminho_do_sol-no_bg.png" alt="Logo" style={{ width: '50px' }} />
+          <img src={logoImg} alt="Logo" style={{ width: '50px' }} />
         </div>
 
-        {/* Botão Flutuante Fixo */}
+        {/* Ícone do Menu (Visível apenas no mobile via CSS) */}
+        <div className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
+          <span className="bar"></span>
+          <span className="bar"></span>
+          <span className="bar"></span>
+        </div>
+
+        {/* Navegação (Classes dinâmicas para abrir/fechar) */}
+        <nav className={`main-nav ${menuOpen ? 'nav-open' : ''}`}>
+          {/* Botões agora apontam para IDs específicos */}
+          <button onClick={() => handleScrollToId('roadmap')} className="nav-link-btn">Cronograma</button>
+          <button onClick={() => handleScrollToId('payment')} className="nav-link-btn">Inscreva-se</button>
+          <button onClick={() => handleScrollToId('guides')} className="nav-link-btn">Sobre Nós</button>
+          <button onClick={() => handleScrollToId('faq')} className="nav-link-btn">FAQ</button>
+        </nav>
+
+        {/* Botão Flutuante Fixo (Opção do Header) */}
         <a 
           href="SEU_LINK_CHECKOUT" 
           target="_blank"
@@ -94,7 +165,7 @@ function App() {
           offset={0} 
           speed={0.2} 
           style={{
-              backgroundImage: 'url("/src/assets/images/layer-20-2.png")', 
+              backgroundImage: `url(${layer20_2})`, 
               backgroundSize: 'cover', backgroundPosition: 'center' 
           }} 
         />
@@ -150,9 +221,9 @@ function App() {
           </div>
         </ParallaxLayer>
 
-        <ParallaxLayer offset={0} speed={0.6} factor={1} style={{ backgroundImage: 'url("/src/assets/images/layer-21.png")', backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 10  }} />
-        <ParallaxLayer offset={0} speed={0.8} factor={1} style={{ backgroundImage: 'url("/src/assets/images/layer-22.png")', backgroundSize: 'cover', backgroundPosition: 'bottom center', zIndex: 10  }} />
-        <ParallaxLayer offset={0} speed={1} factor={1} style={{ backgroundImage: 'url("/src/assets/images/layer-23.png")', backgroundSize: 'cover', backgroundPosition: 'bottom center', zIndex: 10 }} />
+        <ParallaxLayer offset={0} speed={0.6} factor={1} style={{ backgroundImage: `url(${layer21})`, backgroundSize: 'cover', backgroundPosition: 'center', zIndex: 10  }} />
+        <ParallaxLayer offset={0} speed={0.8} factor={1} style={{ backgroundImage: `url(${layer22})`, backgroundSize: 'cover', backgroundPosition: 'bottom center', zIndex: 10  }} />
+        <ParallaxLayer offset={0} speed={1} factor={1} style={{ backgroundImage: `url(${layer23})`, backgroundSize: 'cover', backgroundPosition: 'bottom center', zIndex: 10 }} />
         <ParallaxLayer offset={0} speed={1} factor={1} style={{ background: 'linear-gradient(to bottom, transparent 60%, #0D0818 98%, #0D0818 100%)', zIndex: 14 }} />
         
         {/* SEÇÃO TÍTULO E HISTÓRIA (SCROLL TELLING) OFFSET 0.99 */}
@@ -183,7 +254,7 @@ function App() {
                 
                 <Reveal delay={400}>
                   <p className="chapter-subtitle">
-                   Quando o sofrimento da subida <br/> revela o sentido da existência.
+                    Quando o sofrimento da subida <br/> revela o sentido da existência.
                   </p>
                 </Reveal>
 
@@ -207,7 +278,7 @@ function App() {
                   </div>
                   <div className="story-image">
                     <Reveal delay={200}>
-                      <img src="/src/assets/images/layer-hook-1.png" alt="Subida íngreme e esforço" />
+                      <img src={layerHook1} alt="Subida íngreme e esforço" />
                     </Reveal>
                   </div>
                 </div>
@@ -226,7 +297,7 @@ function App() {
                   </div>
                   <div className="story-image">
                     <Reveal delay={200}>
-                      <img src="/src/assets/images/layer-hook-2.png" alt="Estudo no topo" />
+                      <img src={layerHook2} alt="Estudo no topo" />
                     </Reveal>
                   </div>
                 </div>
@@ -363,7 +434,7 @@ function App() {
             <section className="guide-section" id="guides" style={{ background: 'none' }}>
               <h2 className="section-title">Seus Mentores</h2>
               <div className="guide-content">
-                <div className="guide-image"><img src="/src/assets/images/dani.jpg" alt="Daniel" style={{ borderRadius: '50%', border: '4px solid #102C51', width: '100%', maxWidth: '350px' }} /></div>
+                <div className="guide-image"><img src={daniImg} alt="Daniel" style={{ borderRadius: '50%', border: '4px solid #102C51', width: '100%', maxWidth: '350px' }} /></div>
                 <div className="guide-bio">
                   <span className="guide-subtitle">Mentor na Jornada</span>
                   <h3>Daniel Macedo</h3>
@@ -374,7 +445,7 @@ function App() {
               </div>
               <br/><br/>
               <div className="guide-content guide-reverse">
-                <div className="guide-image"><img src="/src/assets/images/ravin.jpg" alt="Ravin" style={{ borderRadius: '50%', border: '4px solid #102C51', width: '100%', maxWidth: '350px' }} /></div>
+                <div className="guide-image"><img src={ravinImg} alt="Ravin" style={{ borderRadius: '50%', border: '4px solid #102C51', width: '100%', maxWidth: '350px' }} /></div>
                 <div className="guide-bio">
                   <span className="guide-subtitle">Seu Guia na Aventura</span>
                   <h3>Ravin Mor</h3>
