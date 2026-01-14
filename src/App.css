@@ -1,0 +1,1297 @@
+/* --- Variáveis e Reset --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap');
+
+:root {
+    --bg-color: #0A0A0A;
+    --text-color: #F5F5F5;
+    --accent-color: #102C51;
+    --accent-color-light: #0e4183;
+    --card-bg: rgba(26, 26, 26, 0.6);
+    --font-main: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-main);
+    overflow: hidden; /* Necessário para o Parallax funcionar */
+}
+/* --- Container Principal --- */
+.app-container {
+    width: 100%;
+    height: 100vh;
+}
+
+/* --- Header e Navegação --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .1rem 5%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    transition: all 0.3s ease;
+}
+
+.nav-link-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    margin-left: 2rem;
+    margin-left: 2rem;
+    padding: 2px;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.nav-link-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link-btn:hover::after {
+    width: 100%;
+}
+
+/* --- Hero Section (Typography Clamp) --- */
+.hero-title {
+    font-size: 3rem;  /* Sem aspas, com ponto e vírgula */
+    margin: 0;
+    text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
+}
+
+.hero-subtitle {
+    font-size: 1.3rem;
+    margin-top: 10px;
+    text-shadow: 0px 4px 10px rgba(0,0,0,0.8);
+}
+
+/* --- Wrapper de Conteúdo Parallax --- */
+.parallax-content-wrapper {
+    max-width: 100vw;
+    margin: 0 auto;
+}
+
+/* =========================================
+   TIMER MINIMALISTA (Estilo Referência)
+   ========================================= */
+.event-date-section {
+    padding: 16%;
+    background: none;
+    text-align: center;
+}
+
+.countdown-timer.minimal {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem; /* Espaço entre os blocos de tempo */
+    margin-top: 0.5rem;
+    font-family: var(--font-main); /* Usa a fonte do projeto */
+}
+
+/* Removemos o estilo de cartão/borda antigo */
+.timer-item {
+    display: flex;
+    align-items: baseline; /* Alinha o número e o texto na base */
+    gap: 8px; /* Espaço entre o número e a palavra 'Days' */
+}
+
+/* Estilo do NÚMERO (Laranja e Grande) */
+.timer-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-color); /* Cor Laranja da referência */
+    line-height: 1;
+    text-shadow: 0px 2px 10px rgba(0,0,0,0.5);
+}
+
+/* Estilo do LABEL (Branco/Cinza) */
+.timer-label {
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--text-color); /* Cinza claro */
+    text-transform: capitalize; /* Primeira letra maiúscula */
+}
+
+/* Responsividade para celular */
+@media (max-width: 768px) {
+    .countdown-timer.minimal {
+        gap: 1rem;
+    }
+    
+    .timer-number {
+        font-size: 1.8rem;
+    }
+    
+    .timer-label {
+        font-size: 1rem;
+    }
+}
+
+
+
+@media (max-width: 418px) {
+    .countdown-timer.minimal {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin: 10%;
+    }
+    .timer-item {
+        align-items: start;
+        gap: 5%;
+        min-width: 100px;
+    }
+
+    .timer-number {
+        min-width: 45%;
+        text-align: right;
+    }
+
+    .timer-label {
+        text-align: left;
+        min-width: 50%;
+    }
+}
+
+/* --- Seções Gerais --- */
+section {
+    padding: 80px 0;
+    background: transparent !important;
+}
+
+/* Container dos Raios - MODO VÍVIDO */
+.light-rays {
+    position: absolute;
+    top: -28%; /* Puxa um pouco mais para cima para o centro do sol ficar visível */
+    left: 0;
+    width: 120%;
+    height: 120%; /* Aumenta a altura para cobrir bem */
+    
+    /* Um núcleo de sol muito forte no topo */
+    background: radial-gradient(circle at 50% 30%, rgba(255, 220, 150, 0.3) 0%, transparent 60%);
+    
+    pointer-events: none;
+    z-index: 11; /* Fica acima do fundo, atrás do texto */
+    
+    /* O SEGREDO DA INTENSIDADE */
+    /* Tente 'screen' se 'plus-lighter' não funcionar no seu navegador, mas plus-lighter é mais forte */
+    mix-blend-mode: plus-lighter; 
+    overflow: hidden;
+    filter: blur(8px); /* Deixa a luz "macia" e realista */
+}
+
+/* Raios Primários (Mais lentos e largos) */
+.light-rays::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    
+    /* Cores mais fortes: Laranja e Branco */
+    background: conic-gradient(
+        from 0deg at 50% 50%, 
+        transparent 0deg, 
+        rgba(255, 200, 100, 0.3) 15deg, /* Laranja Solar */
+        transparent 30deg, 
+        rgba(255, 255, 255, 0.4) 45deg, /* Branco Intenso */
+        transparent 60deg,
+        rgba(255, 200, 100, 0.3) 90deg, 
+        transparent 120deg,
+        rgba(255, 255, 255, 0.2) 150deg,
+        transparent 180deg
+    );
+    transform-origin: center center;
+    animation: rotateRays 280s linear infinite;
+    opacity: .8; /* Opacidade máxima */
+}
+
+/* Raios Secundários (Mais rápidos e finos) */
+.light-rays::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    
+    background: conic-gradient(
+        from 180deg at 50% 50%, 
+        transparent 0deg, 
+        rgba(255, 255, 255, 0.5) 10deg, /* Branco muito forte */
+        transparent 20deg, 
+        rgba(255, 150, 50, 0.2) 40deg, /* Laranja avermelhado */
+        transparent 80deg,
+        rgba(255, 255, 255, 0.3) 130deg,
+        transparent 160deg
+    );
+    transform-origin: center center;
+    animation: rotateRays 120s linear infinite reverse; /* Gira ao contrário */
+    opacity: 0.8;
+}
+
+@keyframes rotateRays {
+    from { transform: translateX(-50%) rotate(0deg); }
+    to { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* =========================================
+   PÁSSAROS - CORREÇÃO DE TRAJETÓRIA
+   ========================================= */
+
+/* O Container é responsável APENAS por atravessar a tela (Movimento Horizontal) */
+.bird-container {
+    position: absolute;
+    left: -10%; /* Ponto de partida padrão */
+    top: 20%;
+    /* O container tem tamanho real (100%), garantindo que o translate use a tela toda */
+    transform: translateX(-10vw); 
+    will-change: transform;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: 3;
+}
+
+/* O Pássaro é responsável pelo Tamanho (Scale), Altura (Y) e Bater de Asas */
+.bird {
+    background-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/174479/bird-cells.svg);
+    background-size: auto 100%;
+    width: 88px;
+    height: 125px;
+    will-change: background-position;
+    
+    animation-name: fly-cycle;
+    animation-timing-function: steps(10);
+    animation-iteration-count: infinite;
+    
+    transform: scale(0.3);
+    
+    /* ADICIONE ISSO AQUI: */
+    filter: brightness(0); /* Força o pássaro a ser 100% preto */
+    opacity: 1; /* Garante que não esteja transparente */
+}
+
+/* --- ANIMAÇÃO DE VOO (Horizontal) --- */
+/* Move de -10vw (esquerda fora) para 110vw (direita fora) */
+@keyframes fly-right {
+    0% { transform: translateX(-10vw); }
+    100% { transform: translateX(110vw); }
+}
+
+/* --- ANIMAÇÃO DE ASAS --- */
+@keyframes fly-cycle {
+    100% { background-position: -900px 0; }
+}
+
+/* --- VARIAÇÕES INDIVIDUAIS --- */
+
+/* Pássaro 1 */
+.bird-container--one {
+    animation-name: fly-right;
+    animation-duration: 15s;
+    animation-delay: 0s;
+    top: 20%; 
+}
+.bird--one {
+    animation-duration: 1s;
+    animation-delay: -0.5s;
+    transform: scale(0.3) translateY(0);
+}
+
+/* Pássaro 2 (Mais lento e mais alto) */
+.bird-container--two {
+    animation-name: fly-right;
+    animation-duration: 20s; /* Mais lento */
+    animation-delay: 2s;
+    top: 10%;
+}
+.bird--two {
+    animation-duration: 1.2s;
+    animation-delay: -0.2s;
+    transform: scale(0.25) translateY(15px); /* Um pouco menor e mais pra baixo no container */
+}
+
+/* Pássaro 3 (Rápido e baixo) */
+.bird-container--three {
+    animation-name: fly-right;
+    animation-duration: 12s; /* Rápido */
+    animation-delay: 8s;
+    top: 40%;
+}
+.bird--three {
+    animation-duration: 0.8s;
+    transform: scale(0.35) translateY(-10px);
+}
+
+/* Pássaro 4 (Extra - Fundo) */
+.bird-container--four {
+    animation-name: fly-right;
+    animation-duration: 25s; /* Muito lento */
+    animation-delay: 10s;
+    top: 50%;
+}
+.bird--four {
+    animation-duration: 1.5s;
+    transform: scale(0.2); /* Bem pequeno */
+}
+
+/* =========================================
+   NUVENS - VERSÃO ESTÁVEL (GEOMETRIA SIMPLES)
+   ========================================= */
+
+.clouds-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* Container que move a nuvem */
+.cloud-container {
+    position: absolute;
+    left: -20%; /* Começa fora da tela */
+    will-change: transform;
+    animation-name: float-clouds;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    z-index: 1;
+}
+
+/* O Desenho da Nuvem (Sólido e Branco) */
+/* O Desenho da Nuvem (Agora mais larga/comprida) */
+.cloud {
+    width: 350px; /* <--- AUMENTEI AQUI (Era 200px) */
+    height: 50px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 200px;
+    position: relative;
+    filter: blur(10px); 
+    opacity: 0.95; 
+}
+
+/* As "lombadas" da nuvem (Ajustadas para cobrir a nova largura) */
+.cloud::after, .cloud::before {
+    content: '';
+    position: absolute;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 100px;
+    transform: rotate(30deg);
+}
+
+/* Lombada da Esquerda (Mais gordinha) */
+.cloud::before {
+    width: 120px; 
+    height: 90px;
+    top: -45px;
+    left: 50px; /* Empurrei um pouco para o meio */
+}
+
+/* Lombada da Direita (Mais esticada para o final) */
+.cloud::after {
+    width: 140px;
+    height: 100px; /* Mais alta */
+    top: -55px;
+    left: 160px; /* <--- EMPURREI BEM PARA A DIREITA PARA COBRIR O COMPRIMENTO */
+}
+
+/* Animação Horizontal */
+@keyframes float-clouds {
+    0% { transform: translateX(-20vw); }
+    100% { transform: translateX(120vw); }
+}
+
+/* =========================================
+   VARIAÇÕES DE NUVENS (Posição e Aleatoriedade)
+   ========================================= */
+
+/* =========================================
+   VARIAÇÕES DE NUVENS (Posição e Tempo)
+   ========================================= */
+
+/* Nuvem 1 */
+.cloud--one {
+    top: 5%; 
+    /* REMOVI O SCALE DAQUI */
+    animation-duration: 220s;
+    animation-delay: -40s; 
+}
+
+/* Nuvem 2 */
+.cloud--two {
+    top: 20%; 
+    /* REMOVI O SCALE DAQUI */
+    animation-duration: 260s;
+    animation-delay: -190s; 
+}
+
+/* Nuvem 3 */
+.cloud--three {
+    top: 12%; 
+    /* REMOVI O SCALE DAQUI */
+    animation-duration: 240s;
+    animation-delay: -95s; 
+}
+
+/* =========================================
+   CONTROLE DE TAMANHO DAS NUVENS (Responsivo)
+   ========================================= */
+
+/* --- Tamanho Padrão (Desktop/Tablet) --- */
+/* Aplicamos a escala no FILHO (.cloud) para não travar a animação do PAI */
+
+.cloud--one .cloud {
+    transform: scale(0.8); /* Tamanho original */
+}
+
+.cloud--two .cloud {
+    transform: scale(1); /* Tamanho original */
+}
+
+.cloud--three .cloud {
+    transform: scale(1.2); /* Tamanho original */
+}
+
+/* --- Tamanho Reduzido (Celular - telas menores que 768px) --- */
+@media (max-width: 768px) {
+    
+    .cloud--one .cloud {
+        transform: scale(0.4); /* Reduzido quase pela metade */
+    }
+
+    .cloud--two .cloud {
+        transform: scale(0.6); /* Reduzido */
+    }
+
+    .cloud--three .cloud {
+        transform: scale(0.8); /* Bem pequenininha */
+    }
+    
+    /* Opcional: Ajustar a altura no mobile para não sobrepor o título */
+    .cloud--two {
+        top: 25%; 
+    }
+}
+
+/* Estado inicial (Invisível e para baixo) */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 1s cubic-bezier(0.5, 0, 0, 1), 
+                transform 1s cubic-bezier(0.5, 0, 0, 1);
+    will-change: opacity, transform;
+}
+
+/* Estado final (Visível e no lugar) */
+.reveal-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.hook-content h2.reveal-text {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 2rem;
+}
+
+/* Whato to bring */
+
+.what-to-bring-section {
+    padding: 6rem 5%;
+}
+
+.logistics-section {
+    padding: 6rem 5%;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+
+.hook-title {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    font-size: 3rem;
+    text-align: center;
+}
+
+
+.subtitle {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* --- Timeline do Roteiro --- */
+.itinerary-timeline {
+    position: relative;
+    padding-left: 30px;
+    border-left: 2px solid var(--accent-color);
+    margin-left: 20px;
+}
+
+.timeline-item {
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -39px;
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    border: 3px solid #0D0818;
+}
+
+/* =========================================
+   SEÇÃO INVESTIMENTO (ATUALIZADO)
+   ========================================= */
+
+.investment-section {
+    background: none;
+    text-align: center;
+}
+
+.investment-box {
+    padding: 3rem;
+    backdrop-filter: blur(10px);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Cabeçalho de Preço */
+.price-header {
+    margin-bottom: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.lot-badge {
+    background-color: #c74b1e; /* Vermelho/Laranja de Urgência */
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: inline-block;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.old-price {
+    text-decoration: line-through;
+    color: #888;
+    font-size: 1.2rem;
+}
+
+.investment-price {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1;
+    text-shadow: 0 0 20px rgba(199, 75, 30, 0.3);
+}
+
+/* Botão de Pagamento Principal (Cartão/Pix) */
+.payment-btn {
+    display: inline-block;
+    width: 100%;
+    text-decoration: none;
+    background: var(--accent-color-light); /* Gradiente Laranja */
+    color: white;
+    padding: 1.2rem 1rem;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(14, 65, 131, .4);
+    transition: all 0.3s ease;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.payment-btn:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 8px 25px rgb(14, 65, 131, .6);
+}
+
+/* Divisor ou texto de "ou" */
+.divider-text {
+    color: #888;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: block;
+}
+
+/* Botão Secundário (WhatsApp) */
+.whatsapp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    text-decoration: none;
+    background-color: transparent;
+    color: #25D366;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    border: 1px solid #25D366;
+    transition: all 0.2s ease;
+}
+
+.whatsapp-btn:hover {
+    background-color: rgba(37, 211, 102, 0.1);
+    color: #fff;
+    border-color: #fff;
+}
+
+.disclaimer {
+    display: block;
+    margin-top: 2rem;
+    color: #666;
+    font-size: 0.75rem;
+    font-style: italic;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    padding-top: 1rem;
+}
+/* --- Media Queries --- */
+@media (max-width: 768px) {
+    .hero-content { flex-direction: column; text-align: center; gap: 2rem; }
+    .hero-text-main, .hero-text-prev h3 { text-align: center; }
+    .countdown-timer { gap: 0.5rem; }
+    .timer-block { min-width: 70px; padding: 10px; }
+    .lot-badge {
+        font-size: 0.75rem; /* Reduz de 0.9rem */
+        padding: 4px 10px;  /* Reduz o preenchimento */
+        margin-bottom: 5px;
+        letter-spacing: 0.5px;
+    }
+
+    .old-price {
+        font-size: 1rem;    /* Reduz de 1.2rem */
+    }
+
+    .investment-price {
+        font-size: 2.5rem;  /* Reduz de 3.5rem para evitar quebrar a linha */
+    }
+}
+
+.bring-item {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bring-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgb(16, 44, 81);
+}
+
+/* --- TÍTULO CAPÍTULO (ISOLADO) --- */
+
+.chapter-label {
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    font-family: monospace;
+    font-size: 1rem;
+    color: var(--accent-color-light);
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.line-accent {
+    display: block;
+    width: 60px; /* Linhas mais longas */
+    height: 2px;
+    background-color: var(--accent-color-light);
+}
+
+.chapter-title {
+    font-size: clamp(4rem, 10vw, 8rem); /* Gigante e responsivo */
+    line-height: 0.85;
+    font-weight: 900;
+    color: #FFF;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    margin: 0;
+    text-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.chapter-title span {
+    font-family: serif; 
+    font-style: italic;
+    font-weight: 400;
+}
+
+.chapter-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 3vw, 1.8rem); 
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text-color);  
+    margin-top: 2rem;
+    line-height: 1.6;
+    letter-spacing: 1px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.5); /* Leitura garantida no fundo */
+}
+
+/* --- SCROLL TELLING (História em Zig-Zag) --- */
+
+.story-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.story-block {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.story-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 4rem;
+    width: 100%;
+}
+
+/* Inverte a ordem para as linhas pares */
+.story-content.reverse {
+    flex-direction: row-reverse;
+}
+
+.story-text {
+    /* border: 1px solid red; */
+    flex: 1;
+    padding: 2rem;
+    width: 50vw;
+    margin-left: 6rem;
+}
+
+.story-image {
+    display: flex;
+    justify-content: center;
+}
+
+.story-image img {
+    width: 50vw;
+    height: auto;
+    filter: brightness(0.8) contrast(1.1);
+    transition: all 0.5s ease;
+    margin: 0;
+    padding: 0;
+}
+
+.story-image img:hover {
+    filter: brightness(1);
+    transform: scale(1.02);
+}
+
+/* Responsividade para Celular */
+@media (max-width: 900px) {
+    .story-content, .story-content.reverse {
+        flex-direction: column-reverse; /* Imagem em cima, texto embaixo no mobile */
+        gap: 2rem;
+    }
+    
+    .story-text {
+        text-align: center;
+        padding: 0;
+    }
+    
+    .story-block {
+        min-height: auto; /* No mobile pode ser menor */
+        padding: 4rem 0;
+    }
+
+    .story-image img {
+        width: 100vw;
+    }
+
+    .story-text {
+        /* border: 1px solid red; */
+        flex: 1;
+        padding: 1rem;
+        width: 100vw;
+        margin-left: 0;
+        margin-top: 5%;
+    }
+}
+
+/* --- Seção Guias --- */
+.guide-section {
+    padding: 6rem 5%;
+    background: transparent !important;
+}
+
+.guide-content {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1100px;
+    margin: 0 auto 6rem auto;
+}
+
+.guide-image {
+    flex-basis: 350px;
+    flex-shrink: 0;
+}
+
+.guide-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%; /* Foto redonda */
+    border: 4px solid var(--accent-color);
+    box-shadow: 0 0 20px rgb(16, 44, 81);
+}
+
+.guide-bio {
+    flex-grow: 1;
+}
+
+.guide-subtitle {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-color-light);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.guide-bio h3 {
+    font-size: 2.2rem;
+    margin: 0.5rem 0 1.5rem 0;
+    color: #FFF;
+}
+
+.guide-bio p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    color: #B0B0B0;
+}
+
+/* Estilo para a citação (Quote) */
+.guide-quote {
+    font-style: italic;
+    color: #F5F5F5 !important;
+    border-left: 3px solid var(--accent-color);
+    padding-left: 1.5rem;
+    margin-top: 2rem !important;
+    text-align: left;
+}
+
+/* --- Inversão de Lado (Desktop) --- */
+.guide-reverse {
+    flex-direction: row-reverse;
+}
+
+/* --- Responsividade (Mobile) --- */
+@media (max-width: 768px) {
+    .hero-title {
+        font-size: 2rem;  /* Sem aspas, com ponto e vírgula */
+    }
+
+    .hero-subtitle {
+        font-size: 1rem;
+    }
+    .guide-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .guide-image {
+        flex-basis: auto;
+        width: 250px;
+    }
+
+    .guide-quote {
+        border-left: none;
+        border-top: 3px solid var(--accent-color);
+        padding-left: 0;
+        padding-top: 1.5rem;
+        text-align: center;
+    }
+}
+
+.logistics-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logistics-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+    border-color: #FFF; /* Opcional: muda a cor da borda no hover */
+}
+
+/* Remove a seta padrão do summary no Chrome/Safari */
+summary::-webkit-details-marker {
+  display: none;
+}
+
+/* --- FAQ Section --- */
+.faq-section {
+    background: none;
+    padding: 6rem 5%;
+}
+
+.faq-list {
+    max-width: 800px;
+    margin: 4rem auto 0 auto;
+}
+
+.faq-item {
+    margin-bottom: 1rem;
+    background-color: rgba(26, 26, 26, 0.4);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    overflow: hidden; /* Adicionado por segurança para manter a borda arredondada */
+    backdrop-filter: blur(10px); /* Mantive caso você tenha esquecido de copiar do anterior */
+}
+
+.faq-question {
+    padding: 1.5rem;
+    cursor: pointer;
+    font-weight: 600;
+    color: var(--accent-color-light);
+    list-style: none; /* Remove a seta padrão */
+}
+
+/* O sinal de + */
+.faq-icon {
+    color: var(--accent-color-light);
+    float: right;
+    font-size: 1.5rem; /* Ajuste opcional para garantir visibilidade */
+}
+
+.faq-answer {
+    padding: 1rem 1.5rem;
+    color: #B0B0B0;
+    line-height: 1.6; /* Mantive do contexto anterior para garantir leitura */
+}
+
+/* Container das 9 Colunas */
+.roadmap-field {
+    background: #0D0818;
+    padding-top: 10px;
+    height: 100vh;
+}
+
+.nine-columns-container {
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    background: #0D0818;
+    height: 100%;
+}
+
+/* Cada Coluna Individual */
+.column-item {
+    position: relative;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5% 0 0 0;
+    transition: all 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+    cursor: pointer;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+}
+
+/* Overlay Escuro para Legibilidade */
+.column-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, rgba(13, 8, 24, 0.8) 0%, rgba(13, 8, 24, 0.4) 100%);
+    z-index: 1;
+    transition: background 0.4s ease;
+}
+
+/* Conteúdo (Texto) */
+.column-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    transform: rotate(-90deg); 
+    transition: all 0.6s ease;
+    white-space: nowrap;
+}
+
+.column-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.column-description {
+    display: hidden;
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0;
+    margin-top: 5%px;
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+    white-space: normal;
+    max-width: 200px;
+}
+
+/* --- EFEITO HOVER (O PULO DO GATO) --- */
+
+.column-item:hover {
+    flex: 2; /* A coluna expande */
+    background: #3C446E; /* Muda para a cor de destaque */
+}
+
+.column-item:hover .column-overlay {
+    background: rgba(239, 146, 132, 0.1); /* Clareia o overlay */
+}
+
+.column-item:hover .column-content {
+    transform: rotate(0deg); /* Título volta ao normal */
+}
+
+.column-item:hover .column-title {
+    font-size: 2rem;
+}
+
+.column-item:hover .column-description {
+    opacity: 1;
+    transform: translateY(0);
+    font-weight: 500;
+}
+
+/* Responsividade: No mobile as colunas empilham */
+@media (max-width: 1100px) {
+    .column-title {
+        font-size: 1rem;
+    }
+
+    .column-description {
+        font-size: 0.6rem;
+    }
+}
+
+@media (max-width: 768px) {    
+    .roadmap-field {
+        height: 140vh;
+    }
+
+    .nine-columns-container {
+        flex-direction: column;
+        height: 120vh;
+    }
+
+    .column-item {
+        flex: 2;
+    }
+
+    .column-content {
+        transform: rotate(0deg);
+    }
+    .column-item:hover {
+        flex: 5;
+    }
+    .column-title {
+        font-size: 1rem;
+    }
+
+    .column-description {
+        font-size: 0.8rem;
+    }
+}
+
+.main-footer {
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 406px) {
+    .main-footer p {
+        font-size: .8rem;
+    }
+}
+
+/* =========================================
+   PRELOADER COM FADE
+   ========================================= */
+
+.preloader-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: #0A0A0A;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 1s ease-out, visibility 1s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.preloader-container.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.pulsing-icon {
+    width: 80px;
+    height: auto;
+    animation: pulse-animation 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse-animation {
+    0% { transform: scale(0.9); opacity: 0.7; }
+    50% { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px rgba(16, 44, 81, 0.6)); }
+    100% { transform: scale(0.9); opacity: 0.7; }
+}
+/* --- Header e Navegação --- */
+.main-header {
+    display: flex;
+    justify-content: flex-start; /* Alinha logo à esquerda */
+    align-items: center;
+    padding: 1rem 5%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.6), transparent);
+    transition: all 0.3s ease;
+    height: 80px;
+}
+
+.logo {
+    margin-right: auto; /* Empurra o resto para a direita se precisar */
+}
+
+/* Links de Navegação (Desktop) */
+.main-nav {
+    display: flex;
+    gap: 2rem;
+    margin-right: 250px; /* Espaço para o botão flutuante não ficar em cima */
+}
+
+.nav-link-btn {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    position: relative;
+    padding-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.nav-link-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.nav-link-btn:hover::after {
+    width: 100%;
+}
+
+/* --- BOTÃO FLUTUANTE (CTA) --- */
+.floating-cta {
+    position: fixed;
+    top: 20px;
+    right: 40px;
+    background: none; 
+    color: white;
+    padding: 12px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    z-index: 2000; /* Acima do header */
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 2px solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(5px);
+    font-size: 0.9rem;
+}
+
+.floating-cta:hover {
+    color: white;
+    transform: translateY(-2px);
+    background: var(--accent-color-light);
+    border-color: var(--accent-color-light);
+}
+
+/* --- AJUSTES MOBILE (A Mágica Acontece Aqui) --- */
+@media (max-width: 768px) {
+    
+    /* Esconde os links de texto no celular */
+    .main-nav {
+        display: none;
+    }
+
+    /* Ajusta o botão CTA para ficar menor e caber no topo */
+    .floating-cta {
+        padding: 8px 15px;     /* Menos enchimento */
+        font-size: 0.7rem;     /* Fonte menor */
+        top: 25px;             /* Ajuste vertical para alinhar com o logo */
+        right: 20px;           /* Mais próximo da borda */
+        border-width: 1px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    /* Ajuste fino para o logo não bater no botão */
+    .logo img {
+        width: 40px !important; /* Logo um pouco menor */
+    }
+}
