@@ -216,8 +216,6 @@ function App() {
 
           <div className="parallax-content-wrapper">
             <div className="story-container">
-
-              {/* BLOCO 1: O Sofrimento Inevitável */}
               <div className="story-block">
                 <div className="story-content">
                   <div className="story-text">
@@ -236,7 +234,6 @@ function App() {
                 </div>
               </div>
 
-              {/* BLOCO 2: A Liberdade Última (Reverse) */}
               <div className="story-block">
                 <div className="story-content reverse">
                   <div className="story-text">
@@ -250,6 +247,19 @@ function App() {
                   <div className="story-image">
                     <Reveal delay={200}>
                       <img src={layerHook2} alt="Estudo no topo" />
+                    </Reveal>
+                  </div>
+                </div>
+              </div>
+
+              <div className="story-block mobile-only-logotherapy">
+                <div className="story-content">
+                  <div className="story-text" style={{ width: '100%' }}> {/* width 100% pois não tem imagem ao lado */}
+                    <Reveal>
+                      <h2 style={{ fontSize: '2rem', color: '#fff', marginBottom: '1rem' }}>Vontade de Sentido</h2>
+                      <p>
+                        A Logoterapia foca no futuro e no propósito: não o que você quer da vida, mas o que ela espera de você. O esforço da subida silencia a mente para revelar o sentido do seu momento atual.
+                      </p>
                     </Reveal>
                   </div>
                 </div>
@@ -282,15 +292,15 @@ function App() {
               <h2 className="subtitle">Cronograma</h2>
               <div className="nine-columns-container">
                 {[
-                  { title: "23h00", text: "Início do Desafio na Barra Funda" },
-                  { title: "01h00", text: "Pausa para o fôlego e café rápido" },
-                  { title: "04h00", text: "O pé na montanha na madrugada" },
-                  { title: "05h30", text: "O sol tocando o rosto a 1.840m" },
-                  { title: "08h00", text: "Lavando a alma nas cachoeiras" },
-                  { title: "12h00", text: "Deslocamento para almoço(Não incluso)" },
-                  { title: "18h00", text: "Por do sol no Lavandário" },
-                  { title: "18h30", text: "Viagem de volta" },
-                  { title: "23h00", text: "A volta para a estação barra funda" }
+                  { title: "23h00", text: "O Chamado: Encontro na Barra Funda. Deixamos o conforto da cidade para trás e iniciamos a expedição." },
+                  { title: "01h00", text: "Última Parada: Café para despertar e alinhamento final da equipe antes da serra." },
+                  { title: "04h00", text: "Imersão: Pé na trilha. O silêncio da madrugada e as lanternas aguçam o foco para a subida." },
+                  { title: "05h30", text: "A Conquista: O sol rasga o horizonte a 1.840m. Momento de contemplação." },
+                  { title: "09h00", text: "Renovação: Banho de cachoeira para lavar a alma e energizar o corpo pós-descida." },
+                  { title: "12h30", text: "Confraternização: Almoço para trocar experiências sobre a vivência." },
+                  { title: "16h30", text: "Lavandário: Chegada em Cunha. Uma imersão visual e olfativa nos campos roxos." },
+                  { title: "18h00", text: "O Último Ato: Um pôr do sol inesquecível fechando o ciclo do dia." },
+                  { title: "23h00", text: "Retorno Transformado: Chegada na Barra Funda. A mente já não é mais a mesma." }
                 ].map((item, i) => (
                   <div key={i} className="column-item">
                     <div className="column-overlay"></div>
@@ -413,28 +423,61 @@ function App() {
             <section className="logistics-section" id="detalhes">
               <h2 className="section-title">Preparado para a Jornada?</h2>
               <div className="logistics-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '2rem', marginTop: '4rem' }}>
+                
+                {/* Card 1: O Desafio Físico */}
                 <Reveal>
-                  <div className="logistics-card" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)' }}>
-                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Nível de Dificuldade</h4>
-                    <p style={{ color: '#B0B0B0', lineHeight: '1.7' }}><strong>Moderada</strong>. A subida da Pedra da Macela é feita por uma estrada pavimentada, porém com inclinação constante e acentuada.</p>
+                  <div className="logistics-card" style={{ height: '100%', backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}>
+                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      O Desafio Físico
+                    </h4>
+                    <p style={{ color: '#B0B0B0', lineHeight: '1.7', marginBottom: '1rem' }}>
+                      <strong>Classificação: Moderada.</strong>
+                    </p>
+                    <p style={{ color: '#E0E0E0', lineHeight: '1.7', flex: 1 }}>
+                      O trajeto é realizado em estrada pavimentada, sem obstáculos técnicos ou necessidade de escalada. É uma caminhada segura e constante, servindo como o momento ideal para desconectar do ritmo urbano e preparar a mente para a aula no cume.
+                    </p>
                   </div>
                 </Reveal>
+
+                {/* Card 2: O Pacote Completo */}
                 <Reveal delay={200}>
-                  <div className="logistics-card" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)' }}>
-                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>O que está Incluso?</h4>
-                    <ul style={{ listStyle: 'none', padding: 0 }}>
-                      {["Professor mestrando em filosofia", "Aula filosófica", "Guia de montanha", "Acesso ao Lavandário", "Transporte executivo", "Uma das melhores vistas do Brasil"].map((item, i) => (
-                        <li key={i} style={{ color: '#B0B0B0', marginBottom: '0.8rem', display: 'flex', alignItems: 'center', gap: '10px' }}><span style={{ color: '#102C51', fontWeight: 'bold' }}>✓</span> {item}</li>
+                  <div className="logistics-card" style={{ height: '100%', backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}>
+                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      Experiência Completa
+                    </h4>
+                    <ul style={{ listStyle: 'none', padding: 0, margin: 0, flex: 1 }}>
+                      {[
+                        "Aula Magna: 'Viktor Frankl e o Sentido'",
+                        "Transporte Executivo (Ida e Volta)",
+                        "Guia de Montanha Credenciado",
+                        "Entrada e Visita ao Lavandário de Cunha",
+                        "Nascer do Sol a 1.840m de altitude",
+                        "Seguro Aventura Individual"
+                      ].map((item, i) => (
+                        <li key={i} style={{ color: '#B0B0B0', marginBottom: '0.8rem', display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: '1.4' }}>
+                          <span style={{ color: '#102C51', fontWeight: 'bold', minWidth: '20px' }}>✓</span> 
+                          <span>{item}</span>
+                        </li>
                       ))}
                     </ul>
                   </div>
                 </Reveal>
+
+                {/* Card 3: O Perfil do Participante */}
                 <Reveal delay={400}>
-                  <div className="logistics-card" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)' }}>
-                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Para Quem é Isso?</h4>
-                    <p style={{ color: '#B0B0B0', lineHeight: '1.7' }}>Para mentes inquietas, entusiastas de desafios e qualquer um que sinta que o crescimento pessoal exige tanto esforço físico quanto mental.</p>
+                  <div className="logistics-card" style={{ height: '100%', backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}>
+                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                       Para Quem é Isso?
+                    </h4>
+                    <p style={{ color: '#B0B0B0', lineHeight: '1.7', marginBottom: '1rem' }}>
+                      Para buscadores de sentido.
+                    </p>
+                    <p style={{ color: '#E0E0E0', lineHeight: '1.7', flex: 1 }}>
+                      Esta jornada é desenhada para quem sente que o turismo convencional é vazio. É para quem entende que <strong>o conhecimento intelectual deve ser vivido na pele</strong>. Se você quer ver o sol nascer enquanto debate como encontrar propósito mesmo nas circunstâncias mais difíceis, seu lugar é aqui.
+                    </p>
                   </div>
                 </Reveal>
+
               </div>
             </section>
 
@@ -443,20 +486,47 @@ function App() {
               <h2 className="section-title">Perguntas Frequentes</h2>
               <div className="faq-list" style={{ maxWidth: '800px', margin: '4rem auto 0 auto' }}>
                 {[
-                  { question: "Qual o real nível de dificuldade?", answer: "A Pedra da Macela é classificada como moderada. São 2km de subida muito íngreme." },
-                  { question: "É preciso ter lido Platão?", answer: "Não. A aula é acessível a todos." },
-                  { question: "Como funciona a caminhada no escuro?", answer: "Subiremos na madrugada com lanternas." },
-                  { question: "O que acontece em caso de chuva?", answer: "Se houver risco de segurança, a trilha será remarcada." },
-                  { question: "O transporte está incluso?", answer: "Sim, transporte executivo ida e volta incluso." }
+                  { 
+                    question: "Qual o real nível de dificuldade?", 
+                    answer: "A Pedra da Macela é classificada como moderada. São 2km de subida constante em terreno pavimentado. Exige resistência cardiorrespiratória, mas não requer técnica de escalada." 
+                  },
+                  { 
+                    question: "Preciso ter lido Viktor Frankl antes?", 
+                    answer: "Não. A aula é desenhada para ser acessível tanto para iniciantes. O foco é a vivência prática dos conceitos." 
+                  },
+                  { 
+                    question: "Qual a relação entre a trilha e a aula?", 
+                    answer: "Utilizamos a subida como uma metáfora física para os conceitos de Frankl: encontrar sentido no esforço e a liberdade de atitude frente às dificuldades." 
+                  },
+                  { 
+                    question: "Como funciona a caminhada no escuro?", 
+                    answer: "Iniciamos a subida de madrugada para ver o nascer do sol. O uso de lanternas (de cabeça ou mão) é obrigatório e caminhamos em grupo." 
+                  },
+                  { 
+                    question: "O que devo levar na mochila?", 
+                    answer: "Lanterna, agasalho pesado e corta-vento (faz muito frio e venta no cume), água (mínimo 1.5L), lanche reforçado e bota ou tênis aderente." 
+                  },
+                  { 
+                    question: "Há banheiros no local?", 
+                    answer: "Apenas na base da montanha (estacionamento). Não há banheiros durante a trilha ou no cume." 
+                  },
+                  { 
+                    question: "O que acontece em caso de chuva?", 
+                    answer: "Monitoramos o clima constantemente. Se houver risco de segurança (raios ou tempestade), a trilha será remarcada. Chuva leve ou neblina não cancelam o evento." 
+                  },
+                  { 
+                    question: "O transporte está incluso?", 
+                    answer: "Sim, transporte executivo ida e volta (saindo do ponto de encontro) está incluso no valor da inscrição." 
+                  }
                 ].map((item, i) => (
                   <details key={i} className="faq-item" style={{ marginBottom: '1rem', backgroundColor: 'rgba(26, 26, 26, 0.4)', borderRadius: '8px', border: '1px solid rgba(255, 255, 255, 0.1)' }}>
                     <summary
                       className="faq-question"
                       style={{ padding: '1.5rem', cursor: 'pointer', fontWeight: '600', color: '#FFF' }}
                     >
-                      {item.question} <span style={{ color: '#102C51', float:'right' }}>+</span>
+                      {item.question} <span style={{ color: '#102C51', float:'right', fontSize: '1.2rem' }}>+</span>
                     </summary>
-                    <div className="faq-answer" style={{ padding: '1rem 1.5rem', color: '#B0B0B0' }}>
+                    <div className="faq-answer" style={{ padding: '1rem 1.5rem', color: '#B0B0B0', lineHeight: '1.6' }}>
                       <p>{item.answer}</p>
                     </div>
                   </details>

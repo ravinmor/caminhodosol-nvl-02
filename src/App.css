@@ -1295,3 +1295,19 @@ summary::-webkit-details-marker {
         width: 40px !important; /* Logo um pouco menor */
     }
 }
+
+/* Quando a tela for MAIOR que 540px, o elemento some completamente do fluxo */
+@media (min-width: 540px) {
+  .mobile-only-logotherapy {
+    display: none !important;
+  }
+}
+
+/* Ajuste opcional para garantir que no mobile ele tenha espaçamento correto */
+@media (max-width: 539px) {
+  .mobile-only-logotherapy {
+    display: flex;
+    align-items: flex-start;
+    padding: 0;
+  }
+}
