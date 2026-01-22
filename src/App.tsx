@@ -3,7 +3,7 @@ import { useRef, useEffect, useState } from 'react';
 import './App.css';
 
 // --- IMPORTAÇÃO DAS IMAGENS (Necessário para funcionar na Vercel) ---
-import logoImg from './assets/images/caminho_do_sol-no_bg.png';
+import logoImg from './assets/images/caminhoSolBranco.png';
 import layer20_2 from './assets/images/layer-20-2.png';
 import layer21 from './assets/images/layer-21.png';
 import layer22 from './assets/images/layer-22.png';
@@ -199,7 +199,7 @@ function App() {
 
                 <Reveal delay={200}>
                   <h1 className="chapter-title">
-                    Vértice<br/>
+                    Sentido<br/>
                     <span style={{ color: 'transparent', WebkitTextStroke: '2px rgba(255,255,255,0.5)' }}>&</span> Logos
                   </h1>
                 </Reveal>
@@ -292,11 +292,11 @@ function App() {
               <h2 className="subtitle">Cronograma</h2>
               <div className="nine-columns-container">
                 {[
-                  { title: "23h00", text: "O Chamado: Encontro na Barra Funda. Deixamos o conforto da cidade para trás e iniciamos a expedição." },
+                  { title: "23h00", text: "O Chamado: Encontro na Barra Funda. Deixamos a cidade para trás e iniciamos a expedição." },
                   { title: "01h00", text: "Última Parada: Café para despertar e alinhamento final da equipe antes da serra." },
                   { title: "04h00", text: "Imersão: Pé na trilha. O silêncio da madrugada e as lanternas aguçam o foco para a subida." },
                   { title: "05h30", text: "A Conquista: O sol rasga o horizonte a 1.840m. Momento de contemplação." },
-                  { title: "09h00", text: "Renovação: Banho de cachoeira para lavar a alma e energizar o corpo pós-descida." },
+                  { title: "09h00", text: "Renovação: Banho de cachoeira para lavar a alma e energizar o corpo." },
                   { title: "12h30", text: "Confraternização: Almoço para trocar experiências sobre a vivência." },
                   { title: "16h30", text: "Lavandário: Chegada em Cunha. Uma imersão visual e olfativa nos campos roxos." },
                   { title: "18h00", text: "O Último Ato: Um pôr do sol inesquecível fechando o ciclo do dia." },
@@ -333,7 +333,7 @@ function App() {
                   { icon: "🧖", title: "Toalha", desc: "Essencial para se secar após o banho de cachoeira." }
                 ].map((item, i) => (
                   <Reveal key={i} delay={i * 30}>
-                    <div className="bring-item" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2rem', borderRadius: '12px', textAlign: 'center', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)' }}>
+                    <div className="bring-item" style={{ backgroundColor: 'rgba(26, 26, 26, 0.6)', minHeight: '300px', padding: '2rem', borderRadius: '12px', textAlign: 'center', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)' }}>
                       <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{item.icon}</div>
                       <h4 style={{ fontSize: '1.3rem', marginBottom: '0.5rem', color: 'white' }}>{item.title}</h4>
                       <p style={{ fontSize: '0.9rem', color: '#B0B0B0', lineHeight: '1.6' }}>{item.desc}</p>
@@ -427,7 +427,7 @@ function App() {
                 {/* Card 1: O Desafio Físico */}
                 <Reveal>
                   <div className="logistics-card" style={{ height: '100%', backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}>
-                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <h4 style={{ color: '#0e4183', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
                       O Desafio Físico
                     </h4>
                     <p style={{ color: '#B0B0B0', lineHeight: '1.7', marginBottom: '1rem' }}>
@@ -442,7 +442,7 @@ function App() {
                 {/* Card 2: O Pacote Completo */}
                 <Reveal delay={200}>
                   <div className="logistics-card" style={{ height: '100%', backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}>
-                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <h4 style={{ color: '#0e4183', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
                       Experiência Completa
                     </h4>
                     <ul style={{ listStyle: 'none', padding: 0, margin: 0, flex: 1 }}>
@@ -466,7 +466,7 @@ function App() {
                 {/* Card 3: O Perfil do Participante */}
                 <Reveal delay={400}>
                   <div className="logistics-card" style={{ height: '100%', backgroundColor: 'rgba(26, 26, 26, 0.6)', padding: '2.5rem', borderRadius: '12px', borderTop: '3px solid #102C51', backdropFilter: 'blur(10px)', display: 'flex', flexDirection: 'column' }}>
-                    <h4 style={{ color: '#102C51', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                    <h4 style={{ color: '#0e4183', fontSize: '1.3rem', marginBottom: '1.5rem', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '10px' }}>
                        Para Quem é Isso?
                     </h4>
                     <p style={{ color: '#B0B0B0', lineHeight: '1.7', marginBottom: '1rem' }}>
@@ -524,7 +524,7 @@ function App() {
                       className="faq-question"
                       style={{ padding: '1.5rem', cursor: 'pointer', fontWeight: '600', color: '#FFF' }}
                     >
-                      {item.question} <span style={{ color: '#102C51', float:'right', fontSize: '1.2rem' }}>+</span>
+                      {item.question} <span style={{ color: '#0e4183', float:'right', fontSize: '1.2rem' }}>+</span>
                     </summary>
                     <div className="faq-answer" style={{ padding: '1rem 1.5rem', color: '#B0B0B0', lineHeight: '1.6' }}>
                       <p>{item.answer}</p>
