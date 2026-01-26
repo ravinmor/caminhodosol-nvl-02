@@ -1272,42 +1272,45 @@ summary::-webkit-details-marker {
     border-color: var(--accent-color-light);
 }
 
-/* --- AJUSTES MOBILE (A Mágica Acontece Aqui) --- */
 @media (max-width: 768px) {
     
-    /* Esconde os links de texto no celular */
     .main-nav {
         display: none;
     }
 
-    /* Ajusta o botão CTA para ficar menor e caber no topo */
     .floating-cta {
-        padding: 8px 15px;     /* Menos enchimento */
-        font-size: 0.7rem;     /* Fonte menor */
-        top: 25px;             /* Ajuste vertical para alinhar com o logo */
-        right: 20px;           /* Mais próximo da borda */
+        padding: 8px 15px;   
+        font-size: 0.7rem;   
+        top: 25px;       
+        right: 20px;        
         border-width: 1px;
         box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    /* Ajuste fino para o logo não bater no botão */
     .logo img {
-        width: 40px !important; /* Logo um pouco menor */
+        width: 40px !important;
     }
 }
 
-/* Quando a tela for MAIOR que 540px, o elemento some completamente do fluxo */
-@media (min-width: 540px) {
+
+@media (min-width: 540px) and (max-width: 900px) {
   .mobile-only-logotherapy {
     display: none !important;
   }
 }
 
-/* Ajuste opcional para garantir que no mobile ele tenha espaçamento correto */
-@media (max-width: 539px) {
+@media (max-width: 539px), (min-width: 901px) {
   .mobile-only-logotherapy {
     display: flex;
     align-items: flex-start;
     padding: 0;
+ 
+  }
+}
+
+@media (min-width: 901px) {
+  .mobile-only-logotherapy .story-text {
+    max-width: 800px;
+    margin: 0 auto;   
   }
 }
