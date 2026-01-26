@@ -254,7 +254,7 @@ function App() {
 
               <div className="story-block mobile-only-logotherapy">
                 <div className="story-content">
-                  <div className="story-text" style={{ width: '100%' }}> {/* width 100% pois não tem imagem ao lado */}
+                  <div className="story-text" style={{ width: '100%', textAlign: "center" }}> {/* width 100% pois não tem imagem ao lado */}
                     <Reveal>
                       <h2 style={{ fontSize: '2rem', color: '#fff', marginBottom: '1rem' }}>Vontade de Sentido</h2>
                       <p>
