@@ -71,7 +71,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const target = new Date("2026-02-05T23:00:00").getTime();
+    const target = new Date("2026-02-20T23:00:00").getTime();
     const interval = setInterval(() => {
       const now = new Date().getTime();
       const difference = target - now;
@@ -222,7 +222,7 @@ function App() {
                     <Reveal>
                       <h2 style={{ fontSize: '2rem', color: '#fff', marginBottom: '1rem' }}>O Sofrimento Inevitável</h2>
                       <p>
-                        A subida da Pedra da Macela exige mais que pernas fortes. Como Frankl ensina, o sofrimento é parte inerente da vida. Aqui, na escuridão da madrugada, encaramos o desconforto físico não como um inimigo, mas como o cenário onde nossa resiliência é forjada.
+                        A subida da Pedra da Macela exige mais que pernas fortes. Como Frankl ensina, o sofrimento é parte inerente da vida.<br/><br/>Aqui, na escuridão da madrugada, encaramos o desconforto físico não como um inimigo, mas como o cenário onde nossa resiliência é forjada.
                       </p>
                     </Reveal>
                   </div>
@@ -276,7 +276,7 @@ function App() {
             <section className="event-date-section">
               <Reveal>
                 <h4 style={{ color: '#F5F5F5', fontSize: '1.2rem', fontWeight: '600', marginBottom: '5rem', letterSpacing: '0.5px' }}>
-                  A aventura será 05 de Fevereiro de 2026
+                  A aventura será 20 de Fevereiro de 2026
                 </h4>
                 <div className="countdown-timer minimal">
                   <div className="timer-item"><span className="timer-number">{timeLeft.days}</span><span className="timer-label">Dias</span></div>
@@ -452,7 +452,7 @@ function App() {
                         "Guia de Montanha Credenciado",
                         "Entrada e Visita ao Lavandário de Cunha",
                         "Nascer do Sol a 1.840m de altitude",
-                        "Seguro Aventura Individual"
+                        "Seguro de Vida Individual"
                       ].map((item, i) => (
                         <li key={i} style={{ color: '#B0B0B0', marginBottom: '0.8rem', display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: '1.4' }}>
                           <span style={{ color: '#102C51', fontWeight: 'bold', minWidth: '20px' }}>✓</span> 
@@ -492,7 +492,7 @@ function App() {
                   },
                   { 
                     question: "Preciso ter lido Viktor Frankl antes?", 
-                    answer: "Não. A aula é desenhada para ser acessível tanto para iniciantes. O foco é a vivência prática dos conceitos." 
+                    answer: "Não. A aula é desenhada para ser acessível tanto para iniciantes quanto para alunos avançados. O foco é a vivência prática dos conceitos." 
                   },
                   { 
                     question: "Qual a relação entre a trilha e a aula?", 
