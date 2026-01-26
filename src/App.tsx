@@ -363,7 +363,7 @@ function App() {
                   </p>
                   
                   <a 
-                    href="LINK_DO_SEU_CHECKOUT" 
+                    href="https://forms.gle/CKNjzgZ6QvZuuCJVA" 
                     target="_blank" 
                     className="cta-button payment-btn"
                   >
@@ -377,7 +377,7 @@ function App() {
 
                   {/* Botão Secundário - WhatsApp */}
                   <a 
-                    href="https://wa.me/5584998385541?text=Ol%C3%A1!%20Estou%20com%20d%C3%BAvidas%20sobre%20o%20pagamento%20da%20inscri%C3%A7%C3%A3o%20do%20Banquete%20no%20Topo." 
+                    href="https://wa.me/5584998385541?text=Olá!%20Estou%20com%20dúvidas%20sobre%20o%20pagamento%20da%20inscrição%20da%20trilha%20Sentido%20e%20Logos." 
                     target="_blank" 
                     className="whatsapp-btn"
                   >
