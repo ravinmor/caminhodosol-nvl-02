@@ -103,7 +103,7 @@ function App() {
 
         {/* APENAS O BOTÃO */}
         <a 
-          href="SEU_LINK_CHECKOUT" 
+          href="https://forms.gle/CKNjzgZ6QvZuuCJVA" 
           target="_blank"
           className="floating-cta"
         >
