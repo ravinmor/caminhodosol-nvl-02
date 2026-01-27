@@ -12,6 +12,8 @@ import layerHook1 from './assets/images/layer-hook-1.png';
 import layerHook2 from './assets/images/layer-hook-2.png';
 import daniImg from './assets/images/dani.jpg';
 import ravinImg from './assets/images/ravin.jpg';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import PixPayment from './Payment';
 
 
 const Reveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: number }) => {
@@ -40,7 +42,7 @@ const Reveal = ({ children, delay = 0 }: { children: React.ReactNode, delay?: nu
   );
 };
 
-function App() {
+function Home() {
   const parallax = useRef<any>(null);
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
   const [pageCount, setPageCount] = useState(() => 
@@ -118,7 +120,7 @@ function App() {
           speed={0.2} 
           style={{
               backgroundImage: `url(${layer20_2})`, 
-              backgroundSize: 'cover', backgroundPosition: 'center' 
+              backgroundSize: 'cover', backgroundPosition: 'center'  
           }} 
         />
 
@@ -534,7 +536,6 @@ function App() {
               </div>
             </section>
 
-            {/* POLÍTICAS */}
             <section className="policy-section" style={{ background: 'none', padding: '4rem 5%', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
               <div className="policy-content" style={{ maxWidth: '800px', margin: '0 auto' }}>
                 <h4 style={{ color: 'white', marginBottom: '1.5rem', textTransform: 'uppercase' }}>Cancelamentos e desistências</h4>
@@ -562,4 +563,15 @@ function App() {
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/payment" element={<PixPayment />} />
+      </Routes>
+    </BrowserRouter>
+  );
+}
+
+// export default App;
