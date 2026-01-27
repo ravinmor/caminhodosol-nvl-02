@@ -8,9 +8,6 @@ const PixPayment: React.FC = () => {
   // A string exata que você forneceu
   const pixCode = "00020126580014br.gov.bcb.pix01360c76fd51-a3c1-4478-a47a-d6044072421e5204000053039865406299.995802BR5913Daniel Macedo6009Sao Paulo62230519daqr48877848993223463047EB9";
 
-  // Link de pagamento alternativo (exemplo)
-  const paymentLink = "https://seusite.com/checkout"; 
-
   const handleCopy = () => {
     navigator.clipboard.writeText(pixCode);
     setCopied(true);
